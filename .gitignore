@@ -9,3 +9,5 @@ notebooks/output_46_0.png
 notebooks/first_figure.png
 code/myplot.png
 .Rproj.user
+code/R/.RData
+code/R/.Rhistory
