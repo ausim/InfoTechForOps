@@ -263,4 +263,3 @@ setwd('c:/Users/smitjef/OneDrive - Auburn University/Courses/INSY 6500/code/R')
 
 # structure - gives the structure of an object
 str(x)
-str(bundles)
