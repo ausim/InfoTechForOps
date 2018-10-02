@@ -117,6 +117,7 @@ x[-2]
 x[c(2, 3, 6)]
 
 
+
 # -------------------------------------
 # Lists - different datatypes
 list1 <- list(c(2,5,3),21.3,sin)
@@ -139,25 +140,64 @@ list1[c(2,3)]
 # Why are these two different
 x = list(1, 2, 3, 4); x2 = list(1:4)
 
+length(x); length(x2)
+
+x3 = list(1:4, 5:8)
+
+# see Tutorialspoint for examples of using element names
+# with lists
 
 # -------------------------------------
 # Matrices
 
+# Elements are arranged sequentially by row.
+M <- matrix(c(3:14), nrow = 4, byrow = TRUE)
+print(M)
+
+# Elements are arranged sequentially by column.
+N <- matrix(c(3:14), nrow = 4, byrow = FALSE)
+print(N)
+
+# Define the column and row names.
+rownames = c("row1", "row2", "row3", "row4")
+colnames = c("col1", "col2", "col3")
+
+P <- matrix(c(3:14), nrow = 4, byrow = TRUE, dimnames = list(rownames, colnames))
+print(P)
+
+# Access the element at 3rd column and 1st row.
+print(P[1,3])
+
+# Access the element at 2nd column and 4th row.
+print(P[4,2])
+
+# Access only the  2nd row.
+print(P[2,])
+
+# Access only the 3rd column.
+print(P[,3])
+
+
 # -------------------------------------
 # Arrays
+# Similar to matrices, but with more that 2 dimensions -- see
+# Tutorialspoint for examples.
+
 
 # -------------------------------------
 # Factors
+# Used for categorical data where there are a fixed number of values to select from
 # Create a vector as input.
 data <- c("East","West","East","North","North","East","West","West","West","East","North")
 print(data)
 print(is.factor(data))
+class(data)
 
 # Apply the factor function.
 factor_data <- factor(data)
 print(factor_data)
 print(is.factor(factor_data))
-
+class(factor_data)
 
 # -------------------------------------
 # Data Frames
@@ -172,6 +212,7 @@ emp.data <- data.frame(
 )
 # Print the data frame.			
 print(emp.data) 
+
 
 # using factors with data frames
 # Create the vectors for data frame.
@@ -231,35 +272,3 @@ repeat {
     break
   }
 }
-
-
-# built-in functions
-# Create a sequence of numbers from 32 to 44.
-print(seq(32,44))
-
-# Find mean of numbers from 25 to 82.
-print(mean(25:82))
-# find std dev of numbers from 25 to 82.
-print(sd(25:82))
-
-# Find sum of numbers frm 41 to 68.
-print(sum(41:68))
-
-# Note that 41:68 and seq(41, 68) are equivalent
-
-
-
-# From Icebreaker R
-hi.there <- function() {
-  cat("Hello World!\n")
-}
-
-# get current working directoy
-getwd()
-
-# set working directory
-setwd('c:\\tmp')
-setwd('c:/Users/smitjef/OneDrive - Auburn University/Courses/INSY 6500/code/R')
-
-# structure - gives the structure of an object
-str(x)
