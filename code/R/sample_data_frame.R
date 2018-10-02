@@ -1,8 +1,20 @@
 # ----------------------------------------------------------------------------------
 # Use the built-in mtcars dataframe
 help(mtcars)
-str(mtcars)
-head(mtcars, 10)
+
+# some standard infomation functions 
+# from http://r-statistics.co/R-Tutorial.html
+class(mtcars)  # get class
+sapply(mtcars, class)  # get class of all columns
+str(mtcars)  # structure
+summary(mtcars)  # summary of mtcars
+head(mtcars)  # view the first 6 obs
+fix(mtcars)  # view spreadsheet like grid
+rownames(mtcars)  # row names
+colnames(mtcars)  # columns names
+nrow(mtcars)  # number of rows
+ncol(mtcars)  # number of columns
+
 
 # element selection
 mtcars[5, 3]
