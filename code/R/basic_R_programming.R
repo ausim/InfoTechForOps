@@ -9,7 +9,7 @@
 #   IcebreakerR 
 #   RTutorial - http://www.r-tutor.com/r-introduction
 
-# -------------------------------------
+# --------------------------------------------------------------
 # Hello, World!
 my_str <- "Hello, World!"
 # Note the variable my_str in the Global Environment --->
@@ -22,7 +22,7 @@ my_str <- "blue."
 # or using the rm() command
 
 #
-# -------------------------------------
+# --------------------------------------------------------------
 # R Data Types
 # logical
 cond <- TRUE
@@ -70,7 +70,7 @@ v
 class(v)
 
 
-# -------------------------------------
+# --------------------------------------------------------------
 # Vectors - single datatype (class)
 
 # Create a vector of type numeric
@@ -119,7 +119,7 @@ x[-2]
 x[c(-2, -5)]
 
 
-# -------------------------------------
+# --------------------------------------------------------------
 # Lists - different datatypes
 list1 <- list(c(2,5,3),21.3,sin)
 print(list1)
@@ -148,7 +148,7 @@ x3 = list(1:4, 5:8)
 # see Tutorialspoint for examples of using element names
 # with lists
 
-# -------------------------------------
+# --------------------------------------------------------------
 # Matrices
 
 # Elements are arranged sequentially by row.
@@ -179,13 +179,13 @@ print(P[2,])
 print(P[,3])
 
 
-# -------------------------------------
+# --------------------------------------------------------------
 # Arrays
 # Similar to matrices, but with more that 2 dimensions -- see
 # Tutorialspoint for examples.
 
 
-# -------------------------------------
+# --------------------------------------------------------------
 # Factors
 # Used for categorical data where there are a fixed number of values to select from
 # Create a vector as input.
@@ -200,7 +200,7 @@ print(factor_data)
 print(is.factor(factor_data))
 class(factor_data)
 
-# -------------------------------------
+# --------------------------------------------------------------
 # Data Frames
 # Create the data frame.
 emp.data <- data.frame(
@@ -228,8 +228,33 @@ print(is.factor(input_data$gender))
 # Print the gender column so see the levels.
 print(input_data$gender)
 
+# See sample_data_frame.R
 
-# -------------------------------------
+# --------------------------------------------------------------
+# Functions
+# define an inspect function
+inspect <- function(x, show=FALSE) {
+  cat("Class: ", class(x))
+  cat("\nType: ", typeof(x))
+  cat("\nMode: ", mode(x))
+  cat("\nStructure:\n")
+  str(x)
+  if (show) {
+    cat("Object:\n")
+    print(x)
+  }
+}
+
+inspect(27.5, TRUE)
+inspect(as.integer(27))
+inspect(c(1,2, 3))
+inspect(c('a', 'b', 'c'))
+inspect(list(1, 2, 3))
+inspect(data.frame(V1=c(1, 2, 3, 4)), TRUE)
+
+# see lexical_scoping_example.R
+
+# --------------------------------------------------------------
 # Selection -- if statemenets
 x <- 400
 if (x < 200) {
@@ -246,7 +271,7 @@ if("Truth" %in% x) {
 }
 
 
-# -------------------------------------
+# --------------------------------------------------------------
 # Repetition -- Loops
 # for loop
 v <- LETTERS[1:4]
