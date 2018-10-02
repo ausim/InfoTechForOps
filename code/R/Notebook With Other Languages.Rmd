@@ -29,6 +29,7 @@ quantile(bundles$ppb, probs = c(.25, .5, .75))
 ```{python, engine.path = '/Anaconda3/python'}
 for j in range(5):
   print("Success!")
+print("We all love Python.")
 ```
 
 Open an MySQL connection

@@ -113,9 +113,10 @@ print(class(apple))
 
 # Selecting elements and slicing
 x[4]
-x[-2]
+x[3:5]
 x[c(2, 3, 6)]
-
+x[-2]
+x[c(-2, -5)]
 
 
 # -------------------------------------

@@ -2,8 +2,10 @@
 # Use the built-in mtcars dataframe
 help(mtcars)
 
-# some standard infomation functions 
+# Some standard infomation functions.
 # from http://r-statistics.co/R-Tutorial.html
+# Note that many of these functions take general
+# R objects as arguements -- not only DataFrames.
 class(mtcars)  # get class
 sapply(mtcars, class)  # get class of all columns
 str(mtcars)  # structure
