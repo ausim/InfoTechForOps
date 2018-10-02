@@ -1,0 +1,48 @@
+---
+title: "First R Notebook"
+output: html_notebook
+author: Jeff Smith
+---
+
+```{r}
+# Hello, World!
+my_str <- "Hello, World!"
+# Note the variable my_str in the Global Environment ->
+print(my_str)
+
+```
+
+Try a Plot -- check out the cool swtiching between plot and console views.
+
+```{r}
+require(tidyverse)
+
+bundles = readRDS("bundles.rds")
+# DPs per Bundle
+ggplot(data = bundles) +
+  geom_bar(mapping = aes(x = ppb)) +
+  ggtitle("DPS Per Bundle")
+mean(bundles$ppb)
+quantile(bundles$ppb, probs = c(.25, .5, .75))
+
+```
+```{python, engine.path = '/Anaconda3/python'}
+for j in range(5):
+  print("Success!")
+```
+
+Open an MySQL connection
+```{r}
+require(RMySQL)
+
+con = dbConnect(MySQL(),dbname='insy6500', user='insy6500',password='insy6500', host = 'localhost')
+dbListTables(con)
+
+```
+
+Now that we have a connection, let's try some SQL:
+```{sql connection=con, max.print=10}
+-- create dataframe with the SKU List
+SELECT * from skus
+```
+
