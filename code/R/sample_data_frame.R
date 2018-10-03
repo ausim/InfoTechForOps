@@ -64,11 +64,11 @@ mtcars2 <- within(mtcars, {
   vs <- factor(vs, labels = c("V", "S"))
   am <- factor(am, labels = c("automatic", "manual"))
   cyl  <- ordered(cyl)
-  gear <- ordered(gear)
+  gear <- o4rdered(gear)
   carb <- ordered(carb)
 })
 summary(mtcars2)
-
+summary(mtcars)
 
 # ----------------------------------------------------------------------------------
 # Sample of reading a dataframe from a file
@@ -81,6 +81,17 @@ data <- read.csv("..\\..\\data\\10_us_economic_data.csv", stringsAsFactors=FALSE
 head(data,10)
 # structure of the data
 str(data)
+summary(data)
+
+# plot of Unemployment rate
+# types: l, p, b, o
+plot(data$UnemploymentRate, type = 'l')
+# jobs added
+plot(data$JobsAdded, type = 'o')
+# GDP
+plot(data$GDP, type = 'o')
+# gaps -- missing data.
+
 
 # Get quarterly data
 quarterly= data[seq(1,nrow(data), 3 ),]
