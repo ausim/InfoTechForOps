@@ -11,16 +11,16 @@ sapply(mtcars, class)  # get class of all columns
 str(mtcars)  # structure
 summary(mtcars)  # summary of mtcars
 head(mtcars)  # view the first 6 obs
-fix(mtcars)  # view spreadsheet like grid
+fix(mtcars)  # view spreadsheet like grid - and adds to the environment
 rownames(mtcars)  # row names
 colnames(mtcars)  # columns names
 nrow(mtcars)  # number of rows
 ncol(mtcars)  # number of columns
 
 
-# element selection
+# Element selection - the next two are equivalent
 mtcars[5, 3]
-mtcars['Duster 360', 'carb']
+mtcars['Hornet Sportabout', 'disp']
 
 # Column selection
 # slicing ("single bracket")
@@ -47,14 +47,14 @@ rows1 = mtcars['Hornet Sportabout',c(1, 2, 3)]
 rows2 = mtcars[c(1, 3, 5, 7),]
 
 # logical indexing (masking)
-
 heavy = mtcars$wt > 4 # ---> environemnt
 # Slice the heavy cars
 heavy_cars = mtcars[heavy,]
 
 light_cars = mtcars[mtcars$wt < 2,]
 
-# Fromt the bottom of the help page.
+# From the bottom of the help page.
+# Not sure I can interpret, but it looks cool.
 require(graphics)
 pairs(mtcars, main = "mtcars data", gap = 1/4)
 coplot(mpg ~ disp | as.factor(cyl), data = mtcars,
