@@ -6,9 +6,9 @@ output:
   html_notebook: default
 ---
 
-R Notebooks use R Markdown.  Code stored in "chunks."  Chunks can be executed individually or as a group.  Code can be in a variety of lanugages -- noteably for us -- R, Python, and SQL.
+R Notebooks use R Markdown.  Code stored in "chunks."  Chunks can be executed individually or as a group.  Code can be in a variety of lanugages -- noteably for us -- R, Python, and SQL.  Information at: https://rmarkdown.rstudio.com/.
 
-Example of a R chunck:
+Example of an R chunk:
 
 ```{r}
 plot(cars)

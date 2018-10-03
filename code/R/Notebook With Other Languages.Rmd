@@ -24,8 +24,10 @@ ggplot(data = bundles) +
   ggtitle("DPS Per Bundle")
 mean(bundles$ppb)
 quantile(bundles$ppb, probs = c(.25, .5, .75))
-
 ```
+
+Try a Python chunk -- if you try this on your computer, make sure that the path to Python is set correctly for your computer.
+
 ```{python, engine.path = '/Anaconda3/python'}
 for j in range(5):
   print("Success!")
