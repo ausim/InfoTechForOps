@@ -121,25 +121,22 @@ x[c(-2, -5)]
 
 # --------------------------------------------------------------
 # Lists - different datatypes
-list1 <- list(c(2,5,3),21.3,sin)
+list1 <- list(c(2,5,3),21.3,sin) #---> check the environment and view the list
 print(list1)
 class(list1)
 
-class(list1[2])
 print(list1[2])
 
-class(list1[3])
 print(list1[3])
 
 list2 <- list(1, 2, 3, 4 ,5, 6, 7, 9, 10)
-class(list2[1])
 print(list2[1])
 
 list2[2]
 list1[c(2,3)]
 
 # Why are these two different
-x = list(1, 2, 3, 4); x2 = list(1:4)
+x = list(1, 2, 3, 4); x2 = list(1:4)  # ---> check the environment and view the lists
 
 length(x); length(x2)
 
@@ -152,7 +149,7 @@ x3 = list(1:4, 5:8)
 # Matrices
 
 # Elements are arranged sequentially by row.
-M <- matrix(c(3:14), nrow = 4, byrow = TRUE)
+M <- matrix(c(3:14), nrow = 4, byrow = TRUE) # ---> check the environment
 print(M)
 
 # Elements are arranged sequentially by column.
@@ -178,6 +175,8 @@ print(P[2,])
 # Access only the 3rd column.
 print(P[,3])
 
+# See Tutorialspoint for examples of accessing elements
+# using the row/column names.
 
 # --------------------------------------------------------------
 # Arrays
@@ -201,7 +200,10 @@ print(is.factor(factor_data))
 class(factor_data)
 
 # --------------------------------------------------------------
-# Data Frames
+# Data Frames - this section focuses on creating data frames and
+# using factors.  Accessing elements is illustrated in 
+# sample_data_frame.R
+#
 # Create the data frame.
 emp.data <- data.frame(
   emp_id = c (1:5), 
@@ -213,7 +215,6 @@ emp.data <- data.frame(
 )
 # Print the data frame.			
 print(emp.data) 
-
 
 # using factors with data frames
 # Create the vectors for data frame.
@@ -228,7 +229,8 @@ print(is.factor(input_data$gender))
 # Print the gender column so see the levels.
 print(input_data$gender)
 
-# See sample_data_frame.R
+# See sample_data_frame.R for more examples of creating and using
+# DataFrames
 
 # --------------------------------------------------------------
 # Functions

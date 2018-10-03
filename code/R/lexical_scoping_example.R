@@ -1,5 +1,5 @@
 #
-# Lexical Scoping Example
+# Lexical Scoping Example - Clear the environment before experimenting
 #
 
 # Note that a is defined inside the function, y is used,
