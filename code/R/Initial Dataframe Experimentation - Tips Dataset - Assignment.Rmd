@@ -1,0 +1,37 @@
+---
+title: "Some Initial Dataframe Experimentation With Our Tips Dataset"
+output: html_notebook
+author: Jeff Smith
+---
+
+Name of the dataset CSV file: 12_meals.csv
+
+1.  In the R chunk below, read the data file into a new dataframe, display the first 5 rows of the resulting dataframe, and use the str() function to display the structure.
+```{r}
+
+```
+
+
+2.  In the R chunck below, create a new data frame that consists of the lunch records (i.e., do a row slice where meal == 'lunch'), and display the first 5 rows of this new data frame.
+
+```{r}
+
+```
+
+
+3.  In the R chunck below, compute (and show) the a) total; b) mean; and c) std. dev. of the tips (over the entire dataset).
+```{r}
+
+```
+
+
+4.  In the R chunck below, create a new data frame that consists of snack records that were paid for by females and include only columns cost, party_size, and tip; and display the first 5 rows of this data frame.
+```{r}
+
+```
+
+
+5.  In the space below, briefly describe how you verifed that your previous data frame only inlcuded the records that were specified (i.e. female/snack) given that the filter columns are not included in the dataset.  In other words, how did you verify your work?
+
+
+
