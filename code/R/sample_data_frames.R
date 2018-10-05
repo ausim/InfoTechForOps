@@ -1,3 +1,8 @@
+# 
+# sample_data_frames.R
+#  jeff smith
+#
+# Note - this script is meant to be used interactively, not in "source" mode.
 # ----------------------------------------------------------------------------------
 # Use the built-in mtcars dataframe
 help(mtcars)
