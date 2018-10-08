@@ -16,12 +16,12 @@ help(mtcars)
 # https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/Extract.data.frame
 # columns as data frames
 mtcars[1:3]
-mtcars[,1:3]
+mtcars[,1:3] # leading comma is optional
 mtcars[c(1, 2, 3, 6)]
-mtcars[,c(1, 2, 3, 6)]
+mtcars[,c(1, 2, 3, 6)] # same
 mtcars['hp']
 mtcars[c('hp', 'mpg')]
-mtcars[,c('hp', 'mpg')]
+mtcars[,c('hp', 'mpg')] # same
 # columns as vectors
 mtcars[['hp']]
 mtcars[[4]]
