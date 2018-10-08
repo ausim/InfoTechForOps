@@ -7,6 +7,11 @@
 # Use the built-in mtcars dataframe
 help(mtcars)
 
+#
+# A student question/comment along with the Stack Overflow link sent me down this path ...
+# https://stackoverflow.com/questions/17052426/what-is-the-purpose-of-this-trailing-comma-in-r
+#
+
 # extract function ([])
 # https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/Extract.data.frame
 # columns as data frames
