@@ -13,7 +13,11 @@ library(tidyverse)
 ?mpg
 
 mpg # to show the first 10 rows + information
-# What is a tibble?
+# What is a tibble?  type 'tibble' and the look for the context menu
+
+
+# View in grid format and add to the environment
+fix(mpg)
 
 # basic scatter plot
 ggplot(data = mpg) + 
@@ -21,9 +25,10 @@ ggplot(data = mpg) +
 
 # help again - note the question mark in front of the function name
 ?ggplot()
+# Slide with Graphing Template
 
 # color the dots by class (a new variable from the data).  Note that
-# the color parameter is inside the aesthetic function here.
+# the color parameter is inside the aesthetic function here
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
 
