@@ -66,6 +66,11 @@ ggplot(data = mpg) +
 # So, what is this thing?
 ?geom_smooth
 
+# Add the dots as an overlay
+ggplot(data = mpg) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy)) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+  
 # let's try a generalized linear model (glm)
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy), method="glm")
@@ -89,7 +94,6 @@ ggplot(data = mpg) +
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy, color = drv)) +
   geom_point(mapping = aes(x = displ, y = hwy, color = drv))
-
 
 # Statistical transformations - for the previous plots, we
 # were plotting the data "as is" with different aesthetics.
@@ -141,15 +145,9 @@ ggplot(data = diamonds) +
 # vertical
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
   geom_boxplot()
+
 # horizontal
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
   geom_boxplot() +
   coord_flip()
 
-# Coordinate Systems
-ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
-  geom_boxplot()
-# flip the axes
-ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
-  geom_boxplot() +
-  coord_flip()
