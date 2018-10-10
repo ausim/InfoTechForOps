@@ -15,7 +15,6 @@ library(tidyverse)
 mpg # to show the first 10 rows + information
 # What is a tibble?  type 'tibble' and the look for the context menu
 
-
 # View in grid format and add to the environment
 fix(mpg)
 
@@ -52,7 +51,7 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_wrap(~ class)
 
-# two variables
+# two variables (grid rather than wrap)
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_grid(drv ~ cyl)
@@ -72,6 +71,8 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))
   
 # let's try a generalized linear model (glm)
+# Note that the method parameter is outside of the aes -- it's part of
+# the geom, not the aesthetic.
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy), method="glm")
 
@@ -82,6 +83,10 @@ ggplot(data = mpg) +
 # divide by class and use different line types.
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy, linetype = class))
+
+# What about some filtering -- and turn off the confidence estimates
+ggplot(data = mpg[mpg$class %in% c('compact', 'subcompact'),]) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy, linetype = class), se=FALSE)
 
 # back to drv type with colors
 ggplot(data = mpg) +
@@ -94,6 +99,17 @@ ggplot(data = mpg) +
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy, color = drv)) +
   geom_point(mapping = aes(x = displ, y = hwy, color = drv))
+
+# linear fit, no confidence estimates
+ggplot(data = mpg) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy, color = drv),method="glm", se=FALSE) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = drv))
+
+# Only front-wheel drive
+ggplot(data = mpg[mpg$drv == 'f',]) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy, color = drv),method="glm", se=FALSE) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = drv))
+
 
 # Statistical transformations - for the previous plots, we
 # were plotting the data "as is" with different aesthetics.
@@ -128,7 +144,7 @@ ggplot(data = diamonds) +
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, colour = cut))
 
-# fill
+# fill - using the same variable.
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, fill = cut))
 
