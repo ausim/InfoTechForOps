@@ -8,6 +8,8 @@ library(nycflights13)
 # check out the dataset
 ?nycflights13::flights
 nycflights13::flights
+# aliased to flights -- can use either
+flights
 
 # Some data on the dataset
 class(nycflights13::flights)          # get class
@@ -43,6 +45,9 @@ nov_dec <- filter(flights, month %in% c(11, 12))
 # month == 8 and dep_delay > 120 is the condition
 aug_baddies <- filter(flights, month == 8 & dep_delay > 120)
 aug_baddies
+# Note the following version uses two conditions rather than
+# a single condition involving an 'and' operator.
+aug_baddies1 <- filter(flights, month == 8, dep_delay > 120)
 
 # Note that filter() excludes NA values in addition to FALSE
 # values.  So there is no need to use omit.na() or similar functions.
@@ -60,10 +65,12 @@ sum(mask)
 # August late departures
 # try counting them first
 sum(flights$month == 8 & flights$dep_delay > 120)
+aug_baddies2 = tmp[flights$month == 8 & flights$dep_delay > 120,]
 # oops -- NA values.  Simple masking could count NA values.
 # first, get rid of the NA values .. don't forget '?complete.cases' for help
 tmp = flights[complete.cases(flights$dep_delay),]
 aug_baddies2 = tmp[tmp$month == 8 & tmp$dep_delay > 120,]
+? complete.cases
 # so, the filter() method on tibbles excludes FALSE and NA values (and is a
 # bit easier to read.)
 
@@ -79,6 +86,8 @@ beach <- filter(flights, dest == 'MIA' & (month %in% c(1, 2, 11, 12)))
 late_beach <- filter(beach, arr_delay > 45)
 # or
 late_beach <- filter(flights, dest == 'MIA' & (month %in% c(1, 2, 11, 12)) & arr_delay > 45)
+# or
+late_beach <- filter(flights, dest == 'MIA', (month %in% c(1, 2, 11, 12)), arr_delay > 45)
 
 #
 # Arrange ----------------------------------------------------------
@@ -130,6 +139,7 @@ summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
 # So, what is the by_day object -- In the environment, it looks just like bad_flights
 class(by_day)
 class(flights)
+?group_by
 
 # to save the daily summaries from above:
 daily_summaries <- summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
@@ -151,19 +161,19 @@ delay <- summarise(by_dest,
                    dist = mean(distance, na.rm = TRUE),
                    delay = mean(arr_delay, na.rm = TRUE)
 )
-delay <- filter(delay, count > 20, dest != "HNL")
+delay1 <- filter(delay, count > 20, dest != "HNL")
 
 # It looks like delays increase with distance up to ~750 miles 
 # and then decrease. Maybe as flights get longer there's more 
 # ability to make up delays in the air?
-ggplot(data = delay, mapping = aes(x = dist, y = delay)) +
+ggplot(data = delay1, mapping = aes(x = dist, y = delay)) +
   geom_point(aes(size = count), alpha = 1/3) +
   geom_smooth(se = FALSE)
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
 # The 'pipe' allows you to do this type of multi-step process
 # without storing the intermediate results;
-delays <- flights %>% 
+delay2 <- flights %>% 
   group_by(dest) %>% 
   summarise(
     count = n(),
