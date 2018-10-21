@@ -184,7 +184,7 @@ delay2 <- flights %>%
 
 
 # Suppose that you want to know the popular destinations and thier distances
-
+#
 popular_dests <- flights %>%
   group_by(dest) %>%
   summarize(
@@ -194,5 +194,42 @@ popular_dests <- flights %>%
   filter(num > 5000) %>%
   mutate(tot = num * dist) %>%
   arrange(desc(num))
-  
-  
+
+
+# Meal example from the Python section of the class
+# Get the current working directory
+print(getwd())
+# Read the meals data
+data <- read.csv("..\\..\\data\\12_meals.csv", stringsAsFactors=FALSE)
+meals <- as_tibble(data)
+
+
+meals <- meals %>%
+  mutate(tip_percentage = tip / cost)
+
+meals_by_day <- meals %>%
+  group_by(day) %>%
+  summarise (
+    count = n(),
+    avg_tip = mean(tip, na.rm = TRUE),
+    avg_cost = mean(cost, na.rm = TRUE),
+    total_people = sum(party_size, na.rm = TRUE)
+  )
+
+meals_by_meal <- meals %>%
+  group_by(meal) %>%
+  summarise (
+    count = n(),
+    avg_tip = mean(tip, na.rm = TRUE),
+    avg_cost = mean(cost, na.rm = TRUE),
+    total_people = sum(party_size, na.rm = TRUE)
+  )
+
+meals_by_payer <- meals %>%
+  group_by(payer) %>%
+  summarise (
+    count = n(),
+    avg_tip = mean(tip, na.rm = TRUE),
+    avg_cost = mean(cost, na.rm = TRUE),
+    total_people = sum(party_size, na.rm = TRUE)
+  )
