@@ -139,6 +139,8 @@ ggplot(data = diamonds) +
     fun.y = median
   )
 
+?stat_summary
+
 # let's add some color
 # outline
 ggplot(data = diamonds) + 
@@ -160,6 +162,9 @@ ggplot(data = diamonds) +
 # boxplots
 # vertical
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
+  geom_boxplot()
+
+ggplot(data = diamonds, mapping = aes(x = cut, y = price)) + 
   geom_boxplot()
 
 # horizontal
