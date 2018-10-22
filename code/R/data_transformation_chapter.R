@@ -207,6 +207,22 @@ meals <- as_tibble(data)
 meals <- meals %>%
   mutate(tip_percentage = tip / cost)
 
+summarize(meals, count=n(), 
+         avg_tip=mean(tip, na.rm=TRUE),
+         avg_cost=mean(cost, na.rm = TRUE),
+         total_people = sum(party_size, na.rm = TRUE)
+         )
+
+# By day: we could filter
+meals %>%
+  filter(day == "Thu") %>%
+  summarize(count=n(), 
+            avg_tip=mean(tip, na.rm=TRUE),
+            avg_cost=mean(cost, na.rm = TRUE),
+            total_people = sum(party_size, na.rm = TRUE)
+  )
+
+# Or group
 meals_by_day <- meals %>%
   group_by(day) %>%
   summarise (
