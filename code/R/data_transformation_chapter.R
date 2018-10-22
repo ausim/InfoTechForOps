@@ -143,6 +143,9 @@ class(flights)
 
 # to save the daily summaries from above:
 daily_summaries <- summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
+# sort by badness 
+arrange(daily_summaries, desc(delay))
+
 
 # Group by destination, count the number, sort in descending order
 by_dest <- group_by(flights, dest)
@@ -154,7 +157,7 @@ s <- arrange(s, desc(num))
 
 
 # piping
-
+# consider this sample analysis
 by_dest <- group_by(flights, dest)
 delay <- summarise(by_dest,
                    count = n(),
@@ -204,12 +207,18 @@ data <- read.csv("..\\..\\data\\12_meals.csv", stringsAsFactors=FALSE)
 meals <- as_tibble(data)
 
 
+
+
+
+
+
 meals <- meals %>%
   mutate(tip_percentage = tip / cost)
 
 summarize(meals, count=n(), 
          avg_tip=mean(tip, na.rm=TRUE),
          avg_cost=mean(cost, na.rm = TRUE),
+         med_tp = median(tip_percentage, na.rm = TRUE),
          total_people = sum(party_size, na.rm = TRUE)
          )
 
@@ -219,6 +228,7 @@ meals %>%
   summarize(count=n(), 
             avg_tip=mean(tip, na.rm=TRUE),
             avg_cost=mean(cost, na.rm = TRUE),
+            med_tp = median(tip_percentage, na.rm = TRUE),
             total_people = sum(party_size, na.rm = TRUE)
   )
 
@@ -229,6 +239,7 @@ meals_by_day <- meals %>%
     count = n(),
     avg_tip = mean(tip, na.rm = TRUE),
     avg_cost = mean(cost, na.rm = TRUE),
+    med_tp = median(tip_percentage, na.rm = TRUE),
     total_people = sum(party_size, na.rm = TRUE)
   )
 
@@ -238,6 +249,7 @@ meals_by_meal <- meals %>%
     count = n(),
     avg_tip = mean(tip, na.rm = TRUE),
     avg_cost = mean(cost, na.rm = TRUE),
+    med_tp = median(tip_percentage, na.rm = TRUE),
     total_people = sum(party_size, na.rm = TRUE)
   )
 
@@ -247,5 +259,6 @@ meals_by_payer <- meals %>%
     count = n(),
     avg_tip = mean(tip, na.rm = TRUE),
     avg_cost = mean(cost, na.rm = TRUE),
+    med_tp = median(tip_percentage, na.rm = TRUE),
     total_people = sum(party_size, na.rm = TRUE)
   )

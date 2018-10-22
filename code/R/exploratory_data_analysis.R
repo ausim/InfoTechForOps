@@ -165,6 +165,20 @@ ggplot(data = filter(agent_prodn, dollars < 2000000)) +
   geom_vline(xintercept=mean(agent_prodn$dollars), color="blue")
 
 
+# Firm (Agency) production
+# Agent production (dollars) with mean and median
+ggplot(data = agency_prodn) +
+  geom_histogram(mapping = aes(x = dollars), binwidth = 500000) +
+  geom_vline(xintercept=median(agency_prodn$dollars), color="red") +
+  geom_vline(xintercept=mean(agency_prodn$dollars), color="blue")
+
+# remove the two clear outliers ... 
+ggplot(data = filter(agency_prodn, dollars < 5000000)) +
+  geom_histogram(mapping = aes(x = dollars), binwidth = 75000) +
+  geom_vline(xintercept=median(agency_prodn$dollars), color="red") +
+  geom_vline(xintercept=mean(agency_prodn$dollars), color="blue")
+
+
 # Regression
 df <- filter(aure, SqFt > 0)
 # regression
