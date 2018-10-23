@@ -69,6 +69,20 @@ ggplot(data = filter(aure, DaysOnMarket > 0, DaysOnMarket < 1000)) +
 #
 # Covariation samples ----------------------------------------
 #
+# Price by bedrooms
+# per https://stackoverflow.com/questions/11766856/normalizing-y-axis-in-histograms-in-r-ggplot-to-proportion
+# to get the proportions
+ggplot(data = filter(aure, Bedrooms < 5)) +
+  geom_histogram(mapping = aes(x = Price, y=..count../sum(..count..)), binwidth = 50000) +
+  geom_vline(xintercept=median(filter(aure, Bedrooms < 5)$Price), color="red") +
+  facet_wrap(~NBed)
+# Price by bedrooms and bathrooms
+ggplot(data = filter(aure, Bedrooms < 5, Baths < 5)) +
+  geom_histogram(mapping = aes(x = Price, y=..count../sum(..count..), fill=NBed), binwidth = 50000) +
+  geom_vline(xintercept=median(filter(aure, Bedrooms < 5)$Price), color="red") +
+  facet_grid(NBath~NBed)
+
+
 # Scatter plot of price ~ sqft, colored by # bedrooms
 # Scatter plot
 ggplot(data=aure) +
@@ -82,6 +96,14 @@ ggplot(data=filter(aure, SqFt>0)) +
 ggplot(data=filter(aure, SqFt>0, SqFt < 4000)) +
   geom_point(aes(x=SqFt, y=Price,color=Bedrooms)) +
   scale_color_gradient(low="blue", high="red")
+# By Number of bedrooms
+ggplot(data=filter(aure, SqFt>0)) +
+  geom_point(aes(x=SqFt, y=Price,color=Bedrooms)) +
+  facet_wrap(~NBed)
+# By Number of bedrooms and bathrooms
+ggplot(data=filter(aure, SqFt>0, Bedrooms < 6, Baths < 6)) +
+  geom_point(aes(x=SqFt, y=Price,color=Bedrooms)) +
+  facet_grid(NBath ~ NBed)
 
 # price ~ bedrooms
 ggplot(data=aure) +
@@ -122,7 +144,7 @@ ggplot(data=filter(aure, DaysOnMarket > 0, DaysOnMarket < 90)) +
 # baths vs bedrooms
 ggplot(data = aure) +
   geom_count(mapping = aes(x = NBed, y = NBath))
-
+# or a color tile version
 aure %>% 
   count(NBed, NBath) %>%  
   ggplot(mapping = aes(x = NBed, y = NBath)) +
@@ -237,11 +259,11 @@ ggplot(data = meals) +
 
 # Tip Percentage
 ggplot(data = meals) +
-  geom_histogram(mapping = aes(x=tip_percentage, y=..density..), bins=10)
+  geom_histogram(mapping = aes(x=tip_percentage, y=..count../sum(..count..)), bins=10)
 
 # Cost
 ggplot(data = meals) +
-  geom_histogram(mapping = aes(x=tip_percentage, y=..density..), bins=10) +
+  geom_histogram(mapping = aes(x=tip_percentage, y=..count../sum(..count..)), bins=10) +
   facet_wrap(~meal)
 
 
