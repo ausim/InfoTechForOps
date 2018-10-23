@@ -78,6 +78,10 @@ ggplot(data=aure) +
 ggplot(data=filter(aure, SqFt>0)) +
   geom_point(aes(x=SqFt, y=Price,color=Bedrooms)) +
   scale_color_gradient(low="blue", high="red")
+# Under 4000 sqft
+ggplot(data=filter(aure, SqFt>0, SqFt < 4000)) +
+  geom_point(aes(x=SqFt, y=Price,color=Bedrooms)) +
+  scale_color_gradient(low="blue", high="red")
 
 # price ~ bedrooms
 ggplot(data=aure) +
@@ -142,6 +146,15 @@ agency_prodn <- summarize(by_agency,
                           dom=mean(DaysOnMarket), 
                           dom1=median(DaysOnMarket)) %>% 
   arrange(desc(num))
+
+# Same plot ... but
+ggplot(data = agency_prodn) +
+  geom_col(mapping = aes(x=Firm, y=num))
+
+# Now we can filter by the summary values
+ggplot(data = filter(agency_prodn, num > 50)) +
+  geom_col(mapping = aes(x=Firm, y=num))
+
 
 # Agent Production
 by_agent <- group_by(aure, Agent)
