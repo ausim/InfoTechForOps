@@ -206,3 +206,43 @@ ggplot(data=aure) +
 # multiple
 m2 <- lm( Price ~ SqFt + Bedrooms + Baths, data = df)
 summary(m2)
+
+
+#
+# Meals Tip Data
+#
+# Read the meals data
+data <- read.csv("..\\..\\data\\12_meals.csv", stringsAsFactors=FALSE)
+meals <- as_tibble(data)
+meals <- meals %>%
+  mutate(tip_percentage = tip / cost)
+
+# Meals by Day
+ggplot(data = meals) +
+  geom_bar(mapping = aes(x=day))
+
+# Meals by Meal
+ggplot(data = meals) +
+  geom_bar(mapping = aes(x=meal))
+
+# Cost
+ggplot(data = meals) +
+  geom_histogram(mapping = aes(x=cost))
+
+# Cost
+ggplot(data = meals) +
+  geom_histogram(mapping = aes(x=cost)) +
+  facet_wrap(~meal)
+
+
+# Tip Percentage
+ggplot(data = meals) +
+  geom_histogram(mapping = aes(x=tip_percentage, y=..density..), bins=10)
+
+# Cost
+ggplot(data = meals) +
+  geom_histogram(mapping = aes(x=tip_percentage, y=..density..), bins=10) +
+  facet_wrap(~meal)
+
+
+
