@@ -144,7 +144,9 @@ ggplot(data=filter(aure, DaysOnMarket > 0, DaysOnMarket < 90)) +
 # baths vs bedrooms
 ggplot(data = aure) +
   geom_count(mapping = aes(x = NBed, y = NBath))
-# or a color tile version
+# or a color tile version - Note the use of the pipe with
+# ggplot.  It's limited in that you still need to use the
+# '+ notation' to add components.
 aure %>% 
   count(NBed, NBath) %>%  
   ggplot(mapping = aes(x = NBed, y = NBath)) +
@@ -156,11 +158,36 @@ aure %>%
 # summarize the data
 summarise(aure, num=n(), dollars=sum(Price), dom=mean(DaysOnMarket), dom1=median(DaysOnMarket))
 
-# Transactions by firm
-ggplot(data = aure) +
-  geom_bar(mapping = aes(x=Firm))
+# By Subdivision- group and summarize 
+subdivision <- aure %>%
+  group_by(Subdivision) %>%
+  summarize(
+    num = n(),
+    avg_price = mean(Price),
+    med_price = median(Price),
+    avg_sqft = mean(SqFt),
+    med_sqft = median(SqFt),
+    avg_dom = mean(DaysOnMarket), 
+    med_dom = median(DaysOnMarket)
+  ) %>%
+  arrange(desc(num))
 
-# Agency Production
+# which subdivsions sell?
+ggplot(data = subdivision) +
+  geom_col(mapping = aes(x=Subdivision, y=num))
+# filter down
+ggplot(data = filter(subdivision, num > 20)) +
+  geom_col(mapping = aes(x=Subdivision, y=num))
+# Median price by subdivision?
+ggplot(data = subdivision) +
+  geom_col(mapping = aes(x=Subdivision, y=med_price))
+ggplot(data = filter(subdivision, num > 20)) +
+  geom_col(mapping = aes(x=Subdivision, y=med_price))
+
+
+# Transactions by firm
+# Agency Production - Note that I created the
+# new tibble here rather than using the pipe as above.
 by_agency <- group_by(aure, Firm)
 agency_prodn <- summarize(by_agency, 
                           num=n(),
@@ -169,13 +196,17 @@ agency_prodn <- summarize(by_agency,
                           dom1=median(DaysOnMarket)) %>% 
   arrange(desc(num))
 
-# Same plot ... but
+# Transactions by firm
 ggplot(data = agency_prodn) +
   geom_col(mapping = aes(x=Firm, y=num))
 
 # Now we can filter by the summary values
 ggplot(data = filter(agency_prodn, num > 50)) +
   geom_col(mapping = aes(x=Firm, y=num))
+
+# Median days-on-market.
+ggplot(data = filter(agency_prodn, num > 50)) +
+  geom_col(mapping = aes(x=Firm, y=dom1))
 
 
 # Agent Production
@@ -214,22 +245,6 @@ ggplot(data = filter(agency_prodn, dollars < 5000000)) +
   geom_vline(xintercept=mean(agency_prodn$dollars), color="blue")
 
 
-# Regression
-df <- filter(aure, SqFt > 0)
-# regression
-m <- lm( Price ~ SqFt, df)
-summary(m)
-# plot the scatter and regression
-ggplot(data=aure) +
-  geom_point(aes(x=SqFt, y=Price,color=Bedrooms)) + 
-  scale_color_gradient(low="blue", high="red") +
-  geom_abline(slope=coef(m)[2], intercept=coef(m)[1])
-
-# multiple
-m2 <- lm( Price ~ SqFt + Bedrooms + Baths, data = df)
-summary(m2)
-
-
 #
 # Meals Tip Data
 #
@@ -261,7 +276,7 @@ ggplot(data = meals) +
 ggplot(data = meals) +
   geom_histogram(mapping = aes(x=tip_percentage, y=..count../sum(..count..)), bins=10)
 
-# Cost
+# By meal
 ggplot(data = meals) +
   geom_histogram(mapping = aes(x=tip_percentage, y=..count../sum(..count..)), bins=10) +
   facet_wrap(~meal)
