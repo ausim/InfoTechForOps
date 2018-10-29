@@ -5,10 +5,10 @@ library("tidyverse")
 library("RMySQL")
 
 # Passengers
-pass <- read_csv("..\\data\\passengers.csv")
+pass <- read_csv("..\\..\\data\\passengers.csv")
 
 # Flights
-flights <- read_csv("..\\data\\flights.csv")
+flights <- read_csv("..\\..\\data\\flights.csv")
 
 
 
