@@ -21,7 +21,6 @@ dbListTables(con)
 
 #create dataframe with the flights
 myquery <-"SELECT * from flight;"
-dfFlights <- dbGetQuery(con,myquery)
-head(dfFlights)
-
+dfFlights <- as_tibble(dbGetQuery(con,myquery))
+dfFlights
 
