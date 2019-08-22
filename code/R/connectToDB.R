@@ -9,7 +9,7 @@ con = dbConnect(MySQL(),dbname='insy6500', user='insy6500',password='insy6500', 
 dbListTables(con)
 
 #create dataframe with the SKU List
-myquery <-"SELECT * from skus;"
-dfSkus <- dbGetQuery(con,myquery)
+myquery <-"show tables;"
+dfresults <- dbGetQuery(con,myquery)
 
-head(dfSkus)
+head(dfresults)
