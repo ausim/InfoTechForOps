@@ -19,3 +19,7 @@ code/R/Notebook With Other Languages.nb.html
 .Rhistory
 .RData
 *.pyc
+code/py/.spyproject/codestyle.ini
+code/py/.spyproject/encoding.ini
+code/py/.spyproject/vcs.ini
+code/py/.spyproject/workspace.ini
