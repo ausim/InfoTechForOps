@@ -11,7 +11,7 @@ np.__version__, pd.__version__
 
 #%%
 A = pd.DataFrame({"A":[1, 2, 3], "B":[4, 5, 6]})
-B = pd.DataFrame({"C":[1, 2, 3], "D":[4, 5, 6]})
+B = pd.DataFrame({"C":[1, 2, 3], "D":[4, 5, 6]}, index=['a', 'b', 'c'])
 #%%
 pd.concat([A, B])
 
