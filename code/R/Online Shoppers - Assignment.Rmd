@@ -1,0 +1,38 @@
+---
+title: "Online Shoppers"
+output: html_notebook
+author: Jingwei Liu
+---
+
+data CSV file: online_shoppers.csv
+
+Q1. In the R chunk below, read the data file into a dataframe, display the first 5 rows of the resulting dataframe, and use the str() function to display the dataframe structure. 
+
+```{r}
+
+```
+
+Q2. In the R chunk below, compute and show (use sprintf) the a) maximum; b) mean; c) std. dev.; and d) minimum; e) median of the attribute [ExitRates].
+
+```{r}
+
+```
+
+Q3. In the R chunk below, a) create a new dataframe that only contains 2 attribute columns [OperatingSystems, Browser] in region 1 to 3; b) use the new dataframe calculate how many shoppers in region 1 use [OperatingSystems] equals to 1 and [Browser] equals to 2.
+
+```{r}
+
+```
+
+Q4.In the R chunk below, a) define a mask that the attribute column [Month] is "Nov" and the attribute column [ProductRelated] is greater than 3 (>3). Then, use this mask to create a new dataframe which only contains 3 attribute columns [VisitorType, Weekend, Revenue]; b) display the first 5 rows of this new dataframe. 
+
+```{r}
+
+```
+
+Q5. In the R chunk below, use the dataframe created in Q4, a) calculate how many shoppers buy products in Nov; b) how many "New_Vistor" in Nov; c) how many "Returning_Vistor" buy products at weekend in Nov.
+
+```{r}
+
+```
+
