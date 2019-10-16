@@ -86,6 +86,7 @@ length(x)
 print(class(x))
 # R indices are 1-based (where Python's are 0-based)
 x[1]
+z[1]
 
 # Sequences
 v <- 5:13
@@ -116,6 +117,8 @@ print(class(apple))
 x[4]
 x[3:5]
 x[c(2, 3, 6)]
+# Note that the negative index doesn't mean start from the end,
+# but remove that specific element (or vector).
 x[-2]
 x[c(-2, -5)]
 
@@ -203,7 +206,7 @@ class(factor_data)
 # --------------------------------------------------------------
 # Data Frames - this section focuses on creating data frames and
 # using factors.  Accessing elements is illustrated in 
-# sample_data_frame.R
+# sample_data_frame.R (and the associated video modules)
 #
 # Create the data frame.
 emp.data <- data.frame(
