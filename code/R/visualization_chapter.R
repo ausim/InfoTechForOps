@@ -36,6 +36,10 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, size = class))
 # Note the warning about using size for a discrete variable.
 
+# use size and color
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, size = class, color=class))
+
 # use transparency (alpha)
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
@@ -68,7 +72,7 @@ ggplot(data = mpg) +
 # Add the dots as an overlay
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy)) +
-  geom_point(mapping = aes(x = displ, y = hwy))
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
   
 # let's try a generalized linear model (glm)
 # Note that the method parameter is outside of the aes -- it's part of
