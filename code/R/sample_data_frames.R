@@ -32,7 +32,7 @@ mtcars['Hornet Sportabout', 'disp']
 mtcars[1]
 mtcars["hp"]
 mtcars[c(1, 3, 5, 7)]
-sub1 = mtcars[c("mpg", "wt", "carb")] # ---> Check out the environment
+sub1 <- mtcars[c("mpg", "wt", "carb")] # ---> Check out the environment
 
 # to extract a column to a vector
 # Column name
