@@ -1,6 +1,8 @@
 #
 # Lexical Scoping Example - Clear the environment before experimenting
 #
+# See https://bookdown.org/rdpeng/rprogdatascience/scoping-rules-of-r.html for more details
+#
 
 # Note that a is defined inside the function, y is used,
 # but not defined or passed as an arguement, z is defined
