@@ -1,6 +1,7 @@
 #
 # Ch 3 - Visualization
 # R for Data Science - http://r4ds.had.co.nz/
+#
 
 library(tidyverse)
 
@@ -15,9 +16,12 @@ library(tidyverse)
 mpg # to show the first 10 rows + information
 # What is a tibble?  type 'tibble' and the look for the context menu
 
-# View in grid format and add to the environment
+# View/Edit in grid format and add to the environment
+# Note that you can edit existing values and add new 
+# values using this method.
 fix(mpg)
 
+# Is therea relationship between engine size and gas mileage?
 # basic scatter plot
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy))
@@ -30,6 +34,13 @@ ggplot(data = mpg) +
 # the color parameter is inside the aesthetic function here
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
+
+# What about city mileage?
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = cty, color = class))
+# Note that in RStudio, you can easily move through the generated
+# plots using the forward/backward arrows (no need to regenerate
+# as long as you are in the same session)
 
 # use dot size
 ggplot(data = mpg) + 
@@ -49,11 +60,24 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy), color="orange")
 
+# Why not blue?
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color="blue"))
+# color is specified inside the aesthetic, not in the mapping.
+
+
 # Note that we can also define the mapping with the data rather than
 # with the geom.  This will be useful below when we have multiple
 # geoms.
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point()
+
+# The iris dataset
+?iris
+tiris <- as_tibble(iris) 
+
+ggplot(data = tiris, mapping = aes(x = Petal.Length, y = Petal.Width)) +
+  geom_point(mapping = aes(color = Species))
 
 
 # facets
@@ -62,10 +86,16 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_wrap(~ class)
 
+ggplot(data = tiris) +
+  geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length)) +
+  facet_wrap(~ Species)
+# facets should be factors
+
 # two variables (grid rather than wrap)
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_grid(drv ~ cyl)
+
 
 # Geoms -- Geometric objects
 # compare the smooth geom with the point geom earlier -- note
@@ -75,6 +105,9 @@ ggplot(data = mpg) +
 
 # So, what is this thing?
 ?geom_smooth
+
+# Other geoms ...Try ?geom and look at the context menu
+# or check the cheatsheet - https://rstudio.com/resources/cheatsheets/
 
 # Add the dots as an overlay
 ggplot(data = mpg) + 
