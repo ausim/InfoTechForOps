@@ -161,6 +161,8 @@ ggplot(data = mpg[mpg$drv == 'f',]) +
   geom_point(mapping = aes(x = displ, y = hwy, color = drv))
 
 
+# ---------------------------------
+#
 # Statistical transformations - for the previous plots, we
 # were plotting the data "as is" with different aesthetics.
 # Now let's look and some aggregation/transformations.
