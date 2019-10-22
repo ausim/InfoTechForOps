@@ -49,6 +49,13 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy), color="orange")
 
+# Note that we can also define the mapping with the data rather than
+# with the geom.  This will be useful below when we have multiple
+# geoms.
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
+  geom_point()
+
+
 # facets
 # single variable (the "formula" in R-speak)
 ggplot(data = mpg) + 
@@ -73,7 +80,13 @@ ggplot(data = mpg) +
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy)) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
-  
+
+# here's where it's conveneient to define part
+# of the mapping with the data
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_smooth() +
+  geom_point(mapping = aes(color = class))
+
 # let's try a generalized linear model (glm)
 # Note that the method parameter is outside of the aes -- it's part of
 # the geom, not the aesthetic.
