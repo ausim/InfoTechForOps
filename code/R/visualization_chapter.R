@@ -65,7 +65,8 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color="blue"))
 # color is specified inside the aesthetic, not in the mapping.
 
-
+# ---- Ended on 10/22
+#
 # Note that we can also define the mapping with the data rather than
 # with the geom.  This will be useful below when we have multiple
 # geoms.
@@ -76,11 +77,16 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 ?iris
 tiris <- as_tibble(iris) 
 
+# other built-in datasets?
+?datasets
+library(help = "datasets")
+
 ggplot(data = tiris, mapping = aes(x = Petal.Length, y = Petal.Width)) +
   geom_point(mapping = aes(color = Species))
 
-
+# 
 # facets
+#
 # single variable (the "formula" in R-speak)
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) + 
@@ -96,26 +102,27 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_grid(drv ~ cyl)
 
-
+#
 # Geoms -- Geometric objects
+#
 # compare the smooth geom with the point geom earlier -- note
 # that the aes() is the same.
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy))
 
-# So, what is this thing?
+# So, what is this geom_smooth thing?
 ?geom_smooth
 
 # Other geoms ...Try ?geom and look at the context menu
 # or check the cheatsheet - https://rstudio.com/resources/cheatsheets/
 
-# Add the dots as an overlay
+# Add the scatter plot as an overlay
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy)) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
 
 # here's where it's conveneient to define part
-# of the mapping with the data
+# of the mapping in the initial ggplot function call
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_smooth() +
   geom_point(mapping = aes(color = class))
@@ -126,11 +133,16 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy), method="glm")
 
+# with the scatter overlay
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_smooth(method = "glm") +
+  geom_point(mapping = aes(color = class))
+
 # divide by drv and use different line types.
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv))
 
-# divide by class and use different line types.
+# divide by class and use different line types
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy, linetype = class))
 
@@ -146,19 +158,20 @@ ggplot(data = mpg) +
   )
 
 # now add a dot plot as an overlay
-ggplot(data = mpg) + 
-  geom_smooth(mapping = aes(x = displ, y = hwy, color = drv)) +
-  geom_point(mapping = aes(x = displ, y = hwy, color = drv))
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_smooth() +
+  geom_point()
 
-# linear fit, no confidence estimates
-ggplot(data = mpg) + 
-  geom_smooth(mapping = aes(x = displ, y = hwy, color = drv),method="glm", se=FALSE) +
-  geom_point(mapping = aes(x = displ, y = hwy, color = drv))
+# linear fit by drv, no confidence estimates
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_smooth(method="glm", se=FALSE) +
+  geom_point()
 
 # Only front-wheel drive
-ggplot(data = mpg[mpg$drv == 'f',]) + 
-  geom_smooth(mapping = aes(x = displ, y = hwy, color = drv),method="glm", se=FALSE) +
-  geom_point(mapping = aes(x = displ, y = hwy, color = drv))
+ggplot(data = mpg[mpg$drv == 'f',], 
+       mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_smooth(method="glm", se=FALSE) +
+  geom_point()
 
 
 # ---------------------------------
@@ -210,7 +223,9 @@ ggplot(data = diamonds) +
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
 
+#
 # Coordinate Systems
+#
 # boxplots
 # vertical
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
@@ -222,5 +237,10 @@ ggplot(data = diamonds, mapping = aes(x = cut, y = price)) +
 # horizontal
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
   geom_boxplot() +
+  coord_flip()
+
+# Colorful boxplot ...
+ggplot(data = diamonds, mapping = aes(x = cut, y = price)) + 
+  geom_boxplot(color="blue", fill="orange") +
   coord_flip()
 
