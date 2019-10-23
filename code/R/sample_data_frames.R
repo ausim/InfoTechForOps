@@ -60,7 +60,7 @@ light_cars <- mtcars[mtcars$wt < 2,]
 # 6-cylinder cars that get better than 20 mpg
 six_twenty <- mtcars[mtcars$mpg > 20 & mtcars$cyl == 6,]
 
-# more than 250 HP
+# more than 250 HP - don't forget that trailing comma!
 big_boys <- mtcars[mtcars$hp > 250,]
 
 # From the bottom of the help page.
