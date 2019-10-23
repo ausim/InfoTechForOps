@@ -132,6 +132,7 @@ mutate(flights_sml,
 )
 
 # transmute if you only want the new columns
+
 transmute(flights,
   gain = dep_delay - arr_delay,
   hours = air_time / 60,
@@ -161,10 +162,11 @@ s <- summarize(by_dest,
   num = n(),
   dist = mean(distance, na.rm=TRUE) 
 )
-s <- arrange(s, desc(num))
+(s <- arrange(s, desc(num)))
 
-
+#
 # piping
+#
 # consider this sample analysis
 by_dest <- group_by(flights, dest)
 delay <- summarise(by_dest,
@@ -172,7 +174,7 @@ delay <- summarise(by_dest,
                    dist = mean(distance, na.rm = TRUE),
                    delay = mean(arr_delay, na.rm = TRUE)
 )
-delay1 <- filter(delay, count > 20, dest != "HNL")
+(delay1 <- filter(delay, count > 20, dest != "HNL"))
 
 # It looks like delays increase with distance up to ~750 miles 
 # and then decrease. Maybe as flights get longer there's more 
@@ -184,19 +186,19 @@ ggplot(data = delay1, mapping = aes(x = dist, y = delay)) +
 
 # The 'pipe' allows you to do this type of multi-step process
 # without storing the intermediate results;
-delay2 <- flights %>% 
+(delay2 <- flights %>% 
   group_by(dest) %>% 
   summarise(
     count = n(),
     dist = mean(distance, na.rm = TRUE),
     delay = mean(arr_delay, na.rm = TRUE)
   ) %>% 
-  filter(count > 20, dest != "HNL")
+  filter(count > 20, dest != "HNL"))
 
 
 # Suppose that you want to know the popular destinations and thier distances
 #
-popular_dests <- flights %>%
+(popular_dests <- flights %>%
   group_by(dest) %>%
   summarize(
     num = n(),
@@ -204,7 +206,7 @@ popular_dests <- flights %>%
   ) %>%
   filter(num > 5000) %>%
   mutate(tot = num * dist) %>%
-  arrange(desc(num))
+  arrange(desc(num)))
 
 
 # Meal example from the Python section of the class
@@ -236,7 +238,7 @@ meals %>%
   )
 
 # Or group
-meals_by_day <- meals %>%
+(meals_by_day <- meals %>%
   group_by(day) %>%
   summarise (
     count = n(),
@@ -244,9 +246,10 @@ meals_by_day <- meals %>%
     avg_cost = mean(cost, na.rm = TRUE),
     med_tp = median(tip_percentage, na.rm = TRUE),
     total_people = sum(party_size, na.rm = TRUE)
-  )
+  ))
 
-meals_by_meal <- meals %>%
+
+(meals_by_meal <- meals %>%
   group_by(meal) %>%
   summarise (
     count = n(),
@@ -254,9 +257,10 @@ meals_by_meal <- meals %>%
     avg_cost = mean(cost, na.rm = TRUE),
     med_tp = median(tip_percentage, na.rm = TRUE),
     total_people = sum(party_size, na.rm = TRUE)
-  )
+  ))
 
-meals_by_payer <- meals %>%
+
+(meals_by_payer <- meals %>%
   group_by(payer) %>%
   summarise (
     count = n(),
@@ -264,4 +268,4 @@ meals_by_payer <- meals %>%
     avg_cost = mean(cost, na.rm = TRUE),
     med_tp = median(tip_percentage, na.rm = TRUE),
     total_people = sum(party_size, na.rm = TRUE)
-  )
+  ))
