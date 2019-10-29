@@ -26,8 +26,10 @@ aure <- aure %>%
 # Property Price histogram
 ggplot(data = aure) +
   geom_histogram(mapping = aes(x = Price), binwidth = 50000) +
-  geom_vline(xintercept=mean(aure$Price), color="red")
-
+  geom_vline(xintercept=mean(aure$Price), color="red") + 
+  geom_vline(xintercept=median(aure$Price), color="blue") 
+  
+  
 ggplot(data = aure) +
   geom_freqpoly(mapping = aes(x = Price), binwidth = 50000, size=1.5, color="orange")
 
@@ -66,6 +68,12 @@ ggplot(data = filter(aure, DaysOnMarket > 0, DaysOnMarket < 1000)) +
   geom_histogram(mapping = aes(x = DaysOnMarket)) +
   geom_vline(xintercept=mean(filter(aure, DaysOnMarket > 0, DaysOnMarket < 1000)$DaysOnMarket), color="red") +
   geom_vline(xintercept=median(filter(aure, DaysOnMarket > 0, DaysOnMarket < 1000)$DaysOnMarket), color="blue")
+# still looks like a couple of outliners  -- what about limiting to 1 year on the market?
+ggplot(data = filter(aure, DaysOnMarket > 0, DaysOnMarket < 365)) +
+  geom_histogram(mapping = aes(x = DaysOnMarket)) +
+  geom_vline(xintercept=mean(filter(aure, DaysOnMarket > 0, DaysOnMarket < 365)$DaysOnMarket), color="red") +
+  geom_vline(xintercept=median(filter(aure, DaysOnMarket > 0, DaysOnMarket < 365)$DaysOnMarket), color="blue")
+
 
 
 #
