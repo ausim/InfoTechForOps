@@ -58,8 +58,10 @@ ggplot(data = aure) +
 # Hmmm ... some negative values?
 filter(aure, DaysOnMarket < 0)
 # Yep -- mental note.
-# Looks like a significan outlier ....
+# Looks like a significant outlier ....
+# may need in install the pillar package here ...
 filter(aure, DaysOnMarket > 2000)
+
 ggplot(data = filter(aure, DaysOnMarket > 0, DaysOnMarket < 1000)) +
   geom_histogram(mapping = aes(x = DaysOnMarket)) +
   geom_vline(xintercept=mean(filter(aure, DaysOnMarket > 0, DaysOnMarket < 1000)$DaysOnMarket), color="red") +
