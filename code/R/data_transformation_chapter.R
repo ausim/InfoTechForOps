@@ -43,6 +43,7 @@ near(1/49*49, 1)
 # that is clearer to you!
 (nov_dec <- filter(flights, month == 11 | month == 12))
 (nov_dec <- filter(flights, month %in% c(11, 12)))
+# don't use "month == 11 | 12" --- why?
 
 # suppose you want to know how many flights from august
 # had departure delays of more that 2 hours

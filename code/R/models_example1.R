@@ -21,7 +21,7 @@ w1 <- 0
 w2 <- 150
 ggplot(df, aes(x, y)) + 
   geom_abline(aes(intercept = w1, slope = w2)) +
-  geom_point() 
+  geom_point(size=3) 
 
 
 
@@ -44,9 +44,9 @@ ggplot(df, aes(x, y)) +
 model1 <- function(w, data) {
   w[1] + data$x * w[2]
 }
-# sample invocation
+# sample invocation using the previously
+# defined (single values) w1 and w2
 model1(c(w1, w2), df)
-
 
 
 
@@ -64,7 +64,8 @@ measure_distance(c(w1, w2), df)
 # for each of our models (stored in models)
 
 # I need a 2-parameter function for purrr -- code
-# so that the sample dataset used automatically.
+# so that the sample dataset used automatically (note
+# that df is not a parameter)
 sim1_dist <- function(w1, w2) {
   measure_distance(c(w1, w2), df)
 }
