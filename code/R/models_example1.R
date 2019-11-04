@@ -14,7 +14,6 @@ ggplot(data=df) +
   geom_point(aes(x=x, y=y),size=3)
 
 
-
 # define a model family using y = w1 + w2*x (intercept/slope line formula)
 # model instance - w1, w2
 w1 <- 0
