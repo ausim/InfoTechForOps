@@ -188,6 +188,19 @@ model_matrix(df, y ~ x1)
 model_matrix(df, y ~ x1 + x2)
 
 
+#
+# Diamonds dataset
+#
+# Poorer quality diamonds appear to be more expensive
+ggplot(diamonds, aes(cut, price)) +
+  geom_boxplot()
 
 
+
+ndf <- diamonds
+
+ndf$size <- cut(ndf$carat, seq(.1, 5))
+
+ggplot(ndf, aes(factor(size), price)) + 
+  geom_boxplot()
 
