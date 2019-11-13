@@ -1,8 +1,8 @@
 # 1. artist names and album names - artist table + album table
-DESCRIBE artist
-DESCRIBE album
+DESCRIBE artist;
+DESCRIBE album;
 SELECT artist_name, album_name 
-FROM artist INNER JOIN album USING (artist_id)
+FROM artist INNER JOIN album USING (artist_id);
 
 
 # 2. artists and tracks
