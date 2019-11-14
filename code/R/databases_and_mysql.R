@@ -28,3 +28,27 @@ myquery <-"SELECT * from flight;"
 dfFlights <- as_tibble(dbGetQuery(con,myquery))
 dfFlights
 
+# Define a generic query function -- assumes that the connection has
+# already been made.
+tquery <- function(qry) {
+  as_tibble(dbGetQuery(con,qry))
+}
+
+qry = "select * from passenger"
+tquery(qry)
+
+
+
+qry = "
+SELECT 
+  artist_name, 
+  count(*) AS num_tracks 
+FROM 
+  artist 
+  INNER JOIN track USING (artist_id)
+GROUP BY 
+  artist_id
+"
+tquery(qry)
+
+
