@@ -35,17 +35,17 @@ tquery <- function(qry) {
 }
 
 qry = "select * from passenger"
-tquery(qry)
-
+pass <- tquery(qry)
+pass
 
 
 qry = "
 SELECT 
   artist_name, 
-  count(*) AS num_tracks 
+  count(track_id) AS num_tracks 
 FROM 
   artist 
-  INNER JOIN track USING (artist_id)
+  LEFT JOIN track USING (artist_id)
 GROUP BY 
   artist_id
 "
